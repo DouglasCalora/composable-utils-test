@@ -1,12 +1,5 @@
 import type { Ref } from 'vue'
 
-// useCan
-export type UserStore = {
-  userPermissions: Record<string, string>
-  isSuperuser?: boolean
-}
-
-// useView
 export type ViewState = {
   errors: object,
   fields: object,
@@ -20,6 +13,11 @@ export type ViewState = {
 
 export type ViewStateRef = Ref<ViewState>
 
-export type ViewMode = 'list' | 'form' | 'single'
+export type ViewModeTypes = 'list' | 'form' | 'single'
 
-export type ViewStateDefaults = Pick<ViewState, 'errors' | 'metadata' | 'values'>
+export type ViewStateDefaults = Pick<ViewState, 'errors' | 'metadata' | 'values' | 'fields'>
+
+export type ViewParams = {
+  mode: ViewModeTypes
+  defaults: ViewStateDefaults
+}

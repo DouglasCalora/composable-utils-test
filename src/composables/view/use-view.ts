@@ -1,13 +1,10 @@
 import { ref } from 'vue'
+import type { ViewParams } from './use-view.type'
 
-/**
- * @enum {object}
- * @readonly
-*/
-const ViewMode = {
-  List: 'list',
-  Form: 'form',
-  Single: 'single'
+enum ViewMode {
+  List = 'list',
+  Form = 'form',
+  Single = 'single'
 }
 
 /**
@@ -15,11 +12,6 @@ const ViewMode = {
  *
  * @desc Composable para utilizar nos componentes de view, estes componentes normalmente
  * são componentes que englobam a página.
- *
- * @param {{
- *  mode: import('types').ViewMode,
- *  defaults: import('types').ViewStateDefaults
- * }} config
  *
  * @example
  *
@@ -37,20 +29,19 @@ const ViewMode = {
  * viewState.value.fetching // true | false
  * </script>
  * ```
- *
- * @returns {{ viewState: import('types').ViewStateRef }}
  */
-export function useView (config = {}) {
+export function useView (config: ViewParams) {
   const {
     mode = ViewMode.Form,
     defaults = {
       errors: {},
       metadata: {},
-      values: {}
+      values: {},
+      fields: {}
     }
-  } = config
+  } = config || {}
 
-  const hasViewMode = Object.values(ViewMode).includes(mode)
+  const hasViewMode = Object.values(ViewMode).includes(mode as ViewMode)
 
   if (!hasViewMode) throw new Error('Invalid view mode')
 

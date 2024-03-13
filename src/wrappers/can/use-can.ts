@@ -1,14 +1,14 @@
+import type { UseCanParam } from './use-can.type'
+
 /**
  * @function
  *
  * @desc Composable base para permissionamento de tela, utilize-o como uma base para criar
  * seu composable interno, não utilize-o diretamente nas telas.
  *
- * @param {{ store: import('types').UserStore }}
- *
  * @returns {{ can: can, canAny: canAny }}
  */
-export function useCan ({ store }) {
+export function useCan ({ store }: UseCanParam) {
   const { userPermissions, isSuperuser } = store
 
   /**
@@ -28,7 +28,7 @@ export function useCan ({ store }) {
    *
    * @returns {boolean}
    */
-  function can (permission, entity) {
+  function can (permission: string, entity: string) {
     try {
       if (isSuperuser) return true
 
@@ -62,7 +62,7 @@ export function useCan ({ store }) {
    *
    * @returns {boolean}
    */
-  function canAny (permissions = [], entity) {
+  function canAny (permissions: string[] = [], entity: string) {
     if (!Array.isArray(permissions)) {
       throw new Error('Please provide a valid array for permissions.')
     }
