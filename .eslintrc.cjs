@@ -3,5 +3,5 @@ module.exports = {
     'standard'
   ],
 
-  ignorePatterns: ['dist', '.eslintrc.cjs']
+  ignorePatterns: ['lib', '.eslintrc.cjs']
 }
