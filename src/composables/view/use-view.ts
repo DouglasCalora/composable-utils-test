@@ -8,13 +8,10 @@ enum ViewMode {
 }
 
 /**
- * @function
- *
  * @desc Composable para utilizar nos componentes de view, estes componentes normalmente
  * são componentes que englobam a página.
  *
- * @example
- *
+ * @examples
  * ```html
  * <app-list-view-component
  *  v-model:results="viewState.results"
@@ -30,16 +27,15 @@ enum ViewMode {
  * </script>
  * ```
  */
-export function useView (config: ViewParams) {
-  const {
-    mode = ViewMode.Form,
-    defaults = {
-      errors: {},
-      metadata: {},
-      values: {},
-      fields: {}
-    }
-  } = config || {}
+export function useView (config?: ViewParams) {
+  const mode = config?.mode ?? ViewMode.Form
+
+  const defaults = {
+    errors: {},
+    metadata: {},
+    values: {},
+    fields: {}
+  }
 
   const hasViewMode = Object.values(ViewMode).includes(mode as ViewMode)
 

@@ -1,13 +1,13 @@
 import type { Ref } from 'vue'
 
 export type ViewState = {
-  errors: object,
-  fields: object,
-  metadata: object,
-  fetching: boolean,
-  values?: object,
-  submitting?: boolean,
-  results?: object[],
+  errors: object
+  fields: object
+  metadata: object
+  fetching: boolean
+  values?: object
+  submitting?: boolean
+  results?: object[]
   result?: object
 }
 
